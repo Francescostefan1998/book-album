@@ -95,6 +95,7 @@
             type="search"
             placeholder="Search"
             aria-label="Search"
+            oninput="inputValue(event)"
           />
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
             Search
@@ -106,7 +107,7 @@
     <div class="containerr row"></div>
 
     <script>
-      function renderbook({ title, img, ...rest }) {
+      function renderbook({ title, img, asin, price, ...rest }) {
         console.log(rest);
 
         let div = document.createElement("div");
@@ -116,7 +117,11 @@
         <img src=${img} class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">${title}</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <p class="card-text" id="${asin}">${asin}</p>
+
+          <p class="card-text">Price: ${price}</p>
+          <p class="card-text">description..</p>
+
           <a href="#" class="btn btn-primary" onclick="add(event)">Add to cart</a>
           <a href="#" class="btn btn-primary" onclick="deletet(event)">skip</a>
         </div>
@@ -150,8 +155,7 @@
         gettarget.classList.toggle("color");
         const gettitle = gettarget.querySelector("h5").innerText;
         console.log(gettitle);
-        const gettitleNospace = gettitle;
-        // gettitleNospace = gettitleNospace.replace(/\s+/g, "");
+        const gettitleNospace = gettarget.querySelector("p").innerText;
         // gettitleNospace = [gettitleNospace].reduce(
         //  (accum, char) => (char === " " ? accum : accum + char),
         //  ""
@@ -163,7 +167,7 @@
         const getdropdown = document.querySelector("#dropdown");
         const createel = document.createElement("a");
         const createhr = document.createElement("hr");
-        createel.href = id;
+        createel.href = "#" + gettitleNospace;
         createel.innerText = gettitle;
         getdropdown.appendChild(createel);
         getdropdown.appendChild(createhr);
@@ -174,6 +178,10 @@
         const gettarget = event.target.closest("div");
         gettargett = gettarget.closest(".card");
         gettargett.remove(gettargett);
+      };
+
+      const inputValue = function (event) {
+        const stringify = document.querySelectorAll("h5").innerText;
       };
     </script>
     <script
