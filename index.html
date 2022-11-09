@@ -107,6 +107,7 @@
     <div class="containerr row"></div>
 
     <script>
+      let arrofarr = [];
       function renderbook({ title, img, asin, price, ...rest }) {
         console.log(rest);
 
@@ -128,6 +129,11 @@
       </div>`;
 
         document.querySelector(".containerr").appendChild(div);
+        const stringify = document.querySelector("h5").innerText;
+        console.log(stringify);
+        const letterH5 = stringify.split("");
+        console.log(letterH5);
+        arrofarr.push(letterH5);
       }
       function renderAPIResults(data) {
         data.forEach(renderbook);
@@ -179,9 +185,20 @@
         gettargett = gettarget.closest(".card");
         gettargett.remove(gettargett);
       };
-
+      const stringH5 = function () {
+        const stringify = document.querySelectorAll("h5");
+        console.log(stringify);
+        const letterH5 = stringify.split("");
+        console.log(letterH5);
+      };
       const inputValue = function (event) {
-        const stringify = document.querySelectorAll("h5").innerText;
+        const stringhyfyinput = document.querySelector("input").value;
+        const inputletter = stringhyfyinput.split("");
+        console.log(inputletter);
+      };
+
+      window.onload = function () {
+        stringH5();
       };
     </script>
     <script
